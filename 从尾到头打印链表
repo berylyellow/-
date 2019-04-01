@@ -1,0 +1,24 @@
+/*
+输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。
+*/
+
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head) {
+        vector<int> result;
+        stack<int> array;
+        ListNode* p=head;
+        while(p!=nullptr)
+        {
+            array.push(p->val);
+            p = p -> next;
+        }
+        int length = array.size();
+        for(int i=0;i<length;i++)
+        {
+            result.push_back(array.top());
+            array.pop();
+        }
+        return result;
+    }
+};
