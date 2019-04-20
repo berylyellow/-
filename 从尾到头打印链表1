@@ -1,0 +1,56 @@
+/*输入一个链表的头结点，从尾到头反过来打印出每个节点的值。*/
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+typedef struct node
+{
+  int age;
+  char name[20];
+  struct node *next;
+}Node;
+
+void PrintList(Node *head)
+{
+  Node *p = head->next;
+  while(p!= NULL)
+  {
+    cout << p->name << ' ' << p->age <<endl;
+    p = p->next ;
+  }  
+}
+
+void ConversePrint(Node *head)
+{
+  Node *p = head->next;
+  stack <Node*> nodes;
+  while(p!=NULL)
+  {
+    nodes.push(p);
+    p = p->next;
+  }
+  while(!nodes.empty())
+  {
+    p = nodes.top();
+    cout<<p->name << ' ' << p->age <<endl;
+    nodes.pop();
+  }
+}
+
+int main()
+{
+  Node *head = new Node;
+  Node *pre = head;
+  for(int i=0;i<2;i++)
+  {
+    Node *p = new Node;
+    cout << "请依次输入第" << i << "个学生的姓名和年龄:" << endl;
+    cin >> p->name >> p->age;
+    pre->next = p;
+    pre = p;
+    p->next = NULL;
+  }
+  //PrintList(head);
+  ConversePrint(head);
+}
