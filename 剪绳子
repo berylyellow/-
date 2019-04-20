@@ -1,0 +1,40 @@
+/*
+给定一根长度为n的绳子，请把绳子剪成m段，每段绳子记为k[0],k[1]……k[m]。请问k[0]*k[1]……*k[m]可能的最大乘积是多少？
+例如：当绳子长度为8时，我们把它剪成长度分别为2,3,3段，此时最大乘积为18.
+*/
+
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int Space(int len)
+{
+  int space = 1;
+  if(len < 2)  space = 0;
+  if(len == 2) space = 1;
+  if(len == 3) space = 2;
+  if(len == 4) space = 4;
+  if(len >= 5)
+  {
+    int timesof3 = len/3;
+    space = pow(3,timesof3);
+    int rest = len - 3 * timesof3;
+    if(rest<=1)
+    {
+      space = space;
+    }
+    if(rest==2)
+    {
+      space = 2 * space;
+    }
+  } 
+  return space;
+}
+
+int main()
+{
+  int len;
+  cout<<"输入绳子长度:"<<endl;
+  cin>>len;
+  cout<<Space(len)<<endl;
+}
