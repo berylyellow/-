@@ -1,0 +1,49 @@
+给定2个字符串S，T，你可以对字符串S进行若干次操作，每次操作你讲选择两个字符x，y，
+并同时把S中的所有字符x替换成y，把所有字符y替换成x，
+问是否存在这样的一系列操作，使得字符串S变成字符串T？
+输入：第一行一个数N（N<=20），表示数据组数
+接来下N行每行两个字符串S，T（字符串长度<=20000）,用空格隔开
+输出：N行，每行一个答案
+若存在，输出Yes，否则输出No
+例子：
+输入：
+2
+aabba eeffe
+asdf asag
+输出：
+Yes
+No
+
+Python：
+
+def find(s1,s2):
+    result1 = {}
+    result2 = {}
+    c1 = []
+    c2 = []
+    for i in s1:
+        result1[i] = s1.count(i)
+    for i in s2:
+        result2[i] = s2.count(i)
+    for k in result1:
+        c1.append(result1[k])
+    for k in result2:
+        c2.append(result2[k])
+    c1.sort(reverse=True)
+    c2.sort(reverse=True)
+    if(c1 == c2):
+        bool = 'Yes'
+    else:
+        bool = 'No'
+    return bool
+
+def dec():
+   num = input()
+   result = []
+   for i in range(int(num)):
+       s1, s2 = map(str, input().split())
+       result.append(find(s1,s2))
+   for i in range(int(num)):
+       print(result[i])
+
+dec()
